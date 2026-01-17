@@ -1,0 +1,22 @@
+name: ftd-analysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Python version
+  - python=3.12
+
+  # Core data analysis libraries
+  - pandas>=2.0.0
+  - numpy>=1.24.0
+
+  # Data visualization
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+
+  # Jupyter notebook support
+  - jupyter>=1.0.0
+  - ipykernel>=6.20.0
+
+  # Utilities
+  - python-dateutil>=2.8.0
