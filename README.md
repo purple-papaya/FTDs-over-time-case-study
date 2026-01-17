@@ -35,7 +35,8 @@ File **a2p_ref** is a reference table between accounts and partner codes.
  - **ref_id** is just the reference ID
  - **partner_code_id** is reference from **partner codes**
 
- # Database Schema - Mermaid ER Diagram
+
+# Database Schema - Mermaid ER Diagram
 
 ## Entity Relationship Diagram
 
