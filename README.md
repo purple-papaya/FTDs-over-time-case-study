@@ -108,3 +108,35 @@ erDiagram
 - **FTD (First Time Deposit)**: Calculated as the first deposit across ALL logins for a client
 - **Registration Types**: "Full" and "Light" are live registrations, "Demo" is demo account
 - **Timezone**: Can be ignored for transaction timestamps in this case study
+
+# Methodology
+
+### Validation Stage
+**Objective**: Verify data integrity and identify quality issues before analysis.
+
+**Steps performed:**
+1. Schema validation: Confirmed all expected columns present in each CSV file
+2. Data type verification: Validated datetime parsing and numeric fields
+3. Uniqueness constraints: Checked primary keys (transaction_id, login, client, partner_code_id, ref_id) for duplicates
+4. Missing value analysis: Identified null values in critical fields
+5. Referential integrity checks: Verified foreign key relationships across tables:
+ - trader.client → clients.client
+ - trans.login → trader.login
+ - trader.first_deposit_id → trans.transaction_id
+ - a2p_ref.account_id → trader.account_id
+ - a2p_ref.partner_code_id → partner_codes.partner_code_id
+6. Logical constraints: Verified amounts > 0 and valid registration types
+
+**Findings:**
+ - Uniqueness issues: Not all code values are unique while partner_code_id is (possible repeated partner registrations)
+ - Null values: Some critical foreign key fields contain null values
+ - Referential integrity violations:
+    - Trading accounts reference non-existent clients
+    - Transactions reference non-existent traders
+    - A2P references contain invalid partner code IDs
+ - Data quality issues:
+    - Some transaction amounts are not greater than 0
+    - Invalid registration type values found
+ - Data type issues: Need to convert IDs to proper types and parse dates with explicit formats
+
+**Actions for cleaning stage:** Remove orphaned records, filter invalid amounts and registration types, convert data types, and standardize date formats.
