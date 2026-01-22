@@ -2,6 +2,8 @@ from functions import load_csv
 
 PATH = '../../data/raw/'
 
+PATH_CLEAN = '../../data/processed/'
+
 DATAFRAMES = {
     'df_trans': load_csv(PATH + 'trans.csv', parse_dates=['created_at']),
     'df_trader': load_csv(PATH + 'trader.csv'),
@@ -9,6 +11,12 @@ DATAFRAMES = {
     'df_partner_codes': load_csv(PATH + 'partner_codes.csv', parse_dates=['_created_on']),
     'df_a2p_ref': load_csv(PATH + 'a2p_ref.csv')
 } 
+
+DATAFRAMES_CLEAN = {
+    'df_trans': load_csv(PATH_CLEAN + 'trans.csv', parse_dates=['created_at']),
+    'df_trader': load_csv(PATH_CLEAN + 'trader.csv'),
+    'df_clients': load_csv(PATH_CLEAN + 'clients.csv', parse_dates=['_created_on'])
+}
 
 EXPECTED_COLUMNS = {
     'df_trans': ["transaction_id", "login", "created_at", "amount", "currency"],

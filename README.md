@@ -140,3 +140,27 @@ erDiagram
  - Data type issues: Need to convert IDs to proper types and parse dates with explicit formats
 
 **Actions for cleaning stage:** Remove orphaned records, filter invalid amounts and registration types, convert data types, and standardize date formats.
+
+### Cleaning Stage
+**Objective**: Fix data quality issues identified during validation.
+
+**Steps performed:**
+1. Filtered transactions with invalid amounts (≤ 0)
+2. Removed clients with invalid registration types
+3. Removed orphaned records (traders without valid clients, transactions without valid logins)
+4. Set invalid first_deposit_id references to null
+5. Converted ID columns to appropriate types (Int64 for nullable integers)
+6. Converted transaction amounts to USD using historical exchange rates (ECB data via `currencyconverter`)
+
+**Result**: Clean, referentially consistent dataset ready for analysis.
+
+### Exploration Stage
+**Objective**: Understand data patterns, distributions, and relationships.
+
+**Key findings:**
+- 5,325 clients (85% Full, 8% Demo, 7% Light registrations)
+- 99.4% of clients have made at least one deposit
+- Average 1.47 logins per client; most clients (74%) have a single account
+- Total transaction volume: $4.55M USD across 7,763 transactions
+- Average transaction: $586 USD, median: $220 USD (right-skewed distribution)
+- Transaction data covers 2025 only, while client registrations span multiple years
