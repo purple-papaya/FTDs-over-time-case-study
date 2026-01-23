@@ -164,3 +164,19 @@ erDiagram
 - Total transaction volume: $4.55M USD across 7,763 transactions
 - Average transaction: $586 USD, median: $220 USD (right-skewed distribution)
 - Transaction data covers 2025 only, while client registrations span multiple years
+
+### Analysis Stage
+**Objective**: Calculate client-level FTD metrics, analyze temporal patterns, and forecast future FTD activity.
+
+**Steps performed:**
+1. Joined transactions, traders, and clients into a single dataset
+2. Calculated FTD per client as the earliest transaction across all logins (`groupby('client')['created_at'].idxmin()`)
+3. Aggregated FTD counts and volumes by day, week, and month
+4. Compared FTD characteristics across registration types (Full, Light, Demo)
+5. Tested moving average models (windows 3, 5, 7, 14, 21) on an 80/20 train-test split
+6. Generated a 30-day rolling MA(5) forecast for daily FTD count and volume
+
+**Key results:**
+- 5,294 FTDs totaling $3.01M USD (avg $568, median $316)
+- MA(5) best-fit model (MAE = 3.25, RMSE = 3.86)
+- 30-day forecast: ~76 FTDs, ~$343K volume (converges to ~2.5 FTDs/day)
