@@ -28,3 +28,6 @@ dependencies:
 
   - pip:
     - currencyconverter
+    - jupyter
+    - nbformat
+    - quarto-cli
