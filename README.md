@@ -180,3 +180,7 @@ erDiagram
 - 5,294 FTDs totaling $3.01M USD (avg $568, median $316)
 - MA(5) best-fit model (MAE = 3.25, RMSE = 3.86)
 - 30-day forecast: ~76 FTDs, ~$343K volume (converges to ~2.5 FTDs/day)
+
+# Results
+
+Please, see the [report](05_report.html).
